@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>WP Exam</title>
 </head>
@@ -20,7 +20,7 @@
     </form>
     <div>
         <!-- ProductsController.showAdd -->
-        <a href="/products/add" class="add-item">
+        <a href="/products/add" class="add-item" sec:authorize="hasRole('ROLE_ADMIN')">
             Add new product
         </a>
     </div>
@@ -48,10 +48,10 @@
             <td>
                 <!-- ProductsController.delete -->
                 <form method="post" th:action="@{'/products/{id}/delete' (id=${product.id})}">
-                    <button type="submit" class="delete-item">Delete</button>
+                    <button type="submit" class="delete-item" sec:authorize="hasRole('ROLE_ADMIN')">Delete</button>
                 </form>
                 <!-- ProductsController.showEdit -->
-                <a th:href="@{'/products/{id}/edit' (id=${product.id})}" class="edit-item">Edit</a>
+                <a th:href="@{'/products/{id}/edit' (id=${product.id})}" class="edit-item" sec:authorize="hasRole('ROLE_ADMIN')">Edit</a>
             </td>
         </tr>
     </table>
